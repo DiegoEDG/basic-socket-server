@@ -14,22 +14,8 @@
 		<title>MiniChat</title>
 	</head>
 	<body class="container">
-		<h1>MiniChat</h1>
+		<h1>Bands</h1>
 		<hr />
-
-		<form id="mainForm">
-			<div class="row">
-				<div class="col-8">
-					<input type="text" name="msg" id="msg" />
-					<button class="btn btn-secondary" type="submit">Send</button>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<ul class="mt-2" id="msgList"></ul>
-				</div>
-			</div>
-		</form>
 
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
@@ -39,19 +25,10 @@
 		></script>
 		<script>
 			const socket = io('http://localhost:3000');
-			const form = document.querySelector('#mainForm');
-			const msgList = document.querySelector('#msgList');
-			const msgInput = document.querySelector('#msg');
 
-			form.addEventListener('submit', (ev) => {
-				ev.preventDefault();
-
-				const msg = msgInput.value;
-				socket.emit('clientMsg', { msg });
-			});
-
-			socket.on('msgReturn', (data) => {
-				msgList.innerHTML += `<li>${data.msg}</li>`;
+			socket.on('bandList', (bands) => {
+				console.log('the bands must be here');
+				console.log(bands);
 			});
 		</script>
 	</body>
